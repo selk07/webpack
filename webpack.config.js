@@ -9,11 +9,11 @@ const EslintWebpackPlugin = require('eslint-webpack-plugin')
 
 const optimization = () => ({
   splitChunks: {
-    chunks: 'all', // Оптимізація загального коду для всіх типів чанків
+    chunks: 'all', 
   },
   minimizer: [
-    new CssMinimizerWebpackPlugin(), // Мінімізація CSS файлів
-    new TerserPlugin() // Мінімізація JS файлів
+    new CssMinimizerWebpackPlugin(), 
+    new TerserPlugin() 
   ]
 });
 
@@ -40,8 +40,8 @@ module.exports = {
       filename: '[name].[contenthash].css'
     }),
     new EslintWebpackPlugin({
-      extensions: ['js'], // Визначаємо розширення файлів для перевірки
-      fix: true // Вмикаємо автоматичне виправлення помилок
+      extensions: ['js'],
+      fix: true 
     })
   ],
   module: {
@@ -85,44 +85,44 @@ module.exports = {
             },
           },
           'css-loader',
-          'less-loader', // Додаємо 'less-loader' для обробки .less файлів
+          'less-loader', 
         ],
       },
       {
-        test: /\.s[ac]ss$/, // Регулярний вираз, що відповідає і .sass, і .scss файлам
+        test: /\.s[ac]ss$/, 
         use: [
           {
-            loader: MiniCssExtractPlugin.loader, // Витягує CSS у окремі файли
+            loader: MiniCssExtractPlugin.loader, 
             options: {
               publicPath: '',
             },
           },
-          'css-loader', // Обробляє CSS
-          'sass-loader' // Компілює Sass/SCSS у CSS
+          'css-loader', 
+          'sass-loader' 
         ],
       },
 
       {
-        test: /\.ts$/, // Вказуємо, що файл з розширенням .ts повинен бути оброблений
-        exclude: /node_modules/, // Виключаємо директорію node_modules з обробки
+        test: /\.ts$/, 
+        exclude: /node_modules/, 
         use: {
-          loader: 'babel-loader', // Використовуємо babel-loader для компіляції
+          loader: 'babel-loader', 
           options: {
             presets: [
-              '@babel/preset-env', // Перетворення ES6+ у сумісний код JavaScript
-              '@babel/preset-typescript' // Додавання підтримки TypeScript
+              '@babel/preset-env',
+              '@babel/preset-typescript'
             ]
           }
         }
       },
 
       {
-        test: /\.js$/, // Відповідає усім .js файлам
-        exclude: /node_modules/, // Виключає папку node_modules
+        test: /\.js$/, 
+        exclude: /node_modules/, 
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'] // Використовує preset-env для транспіляції сучасного JS
+            presets: ['@babel/preset-env'] 
           }
         }
       },
